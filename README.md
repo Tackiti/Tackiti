@@ -1,3 +1,1 @@
-string = ("Can I get a Dounat ?");
-
-print(string)
+[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Tackiti)](https://github.com/anuraghazra/github-readme-stats)
