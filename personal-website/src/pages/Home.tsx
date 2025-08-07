@@ -1,49 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import ProjectCard from '../components/ProjectCard';
+import { projectService } from '../utils/dataService';
+import { Project } from '../types';
 
-// Mock data for demonstration
-const featuredProjects = [
-  {
-    id: 1,
-    title: "AI Research Project",
-    description: "Exploring machine learning algorithms for pattern recognition",
-    category: "Technology & AI",
-    status: "Active",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop",
-    priority: 1
-  },
-  {
-    id: 2,
-    title: "Classical Music Composition",
-    description: "Creating original pieces inspired by Baroque and Classical periods",
-    category: "Creative Arts",
-    status: "Active",
-    image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop",
-    priority: 2
-  },
-  {
-    id: 3,
-    title: "Organic Computing Research",
-    description: "Investigating biological computing systems and neural networks",
-    category: "Science & Research",
-    status: "Planning",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
-    priority: 3
-  },
-  {
-    id: 4,
-    title: "Traditional Art Collection",
-    description: "Oil paintings exploring themes of nature and human emotion",
-    category: "Creative Arts",
-    status: "Active",
-    image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=300&fit=crop",
-    priority: 4
-  }
-];
+
 
 const Home: React.FC = () => {
+  const [featuredProjects, setFeaturedProjects] = useState<Project[]>([]);
+
+  useEffect(() => {
+    const projects = projectService.getAll();
+    // Sort by priority and take the first 4
+    const sorted = projects.sort((a, b) => a.priority - b.priority).slice(0, 4);
+    setFeaturedProjects(sorted);
+  }, []);
+
   return (
     <div className="pt-16">
       {/* Hero Section */}

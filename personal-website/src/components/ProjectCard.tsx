@@ -2,15 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  category: string;
-  status: string;
-  image: string;
-  priority: number;
-}
+import { Project } from '../types';
 
 interface ProjectCardProps {
   project: Project;
